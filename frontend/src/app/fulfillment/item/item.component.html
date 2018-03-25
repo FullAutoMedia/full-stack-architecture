@@ -1,10 +1,12 @@
-<h2>{{ action }} Item</h2>
+<span class="mat-typography">
+  <h2>{{ action }} Item</h2>
 
- <mat-form-field>
-    <input matInput placeholder="Name" [(ngModel)]="item.name" />
-  </mat-form-field>
+  <mat-form-field>
+      <input matInput placeholder="Name" [(ngModel)]="item.name" />
+    </mat-form-field>
 
-<div class="actions">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button color="primary" (click)="saveItem()">Save</button>
-</div>
+  <div class="actions">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button color="primary" (click)="saveItem()">Save</button>
+  </div>
+</span>

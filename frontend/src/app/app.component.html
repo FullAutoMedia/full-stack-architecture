@@ -1,5 +1,6 @@
 <mat-sidenav-container class="nav-container">
   <mat-sidenav #sidenav mode="over" class="side-nav">
+    <img src="./../assets/FullAutoMediaLargeLogo2016_LightBlueAndGrey_600X200.png" class="logo" />
     <button mat-button color="primary" routerLink="/fulfillment/dashboard">Home</button>
     <button mat-button color="primary" routerLink="/fulfillment/items">Items</button>
   </mat-sidenav>
@@ -9,10 +10,12 @@
       <button mat-icon-button color="primary" (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
       </button>  
-      <span>CMPUT 395 App</span>
+      <span>MVC Architecture App</span>
     </mat-toolbar>
 
-    <router-outlet></router-outlet>
+    <div class="app-content">
+      <router-outlet></router-outlet>
+    </div>
 
   </mat-sidenav-content>
 </mat-sidenav-container>
