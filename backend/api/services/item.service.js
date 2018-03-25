@@ -28,8 +28,19 @@ exports.list = (callback) => {
     db.close();
 }
 
-exports.update = (req, res) => {
-    res.send('item update ' + req.params.itemId)
+exports.update = (item, callback) => {
+    var db = new sqlite3.Database('./data-store/demo.db');
+    var sql = "UPDATE items SET name ='" + item.name + "'";
+
+    db.run(sql, function(err) {
+        if (err) {
+            callback(err, null);
+        } else {
+            callback(err, item);
+        }        
+    });
+
+    db.close();
 }
 
 exports.delete = (req, res) => {

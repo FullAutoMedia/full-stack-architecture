@@ -34,7 +34,14 @@ exports.list = (req, res) => {
 }
 
 exports.update = (req, res) => {
-    res.send('item update ' + req.params.itemId)
+    var item = req.body;
+    itemService.update(item, (err, item) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(item);
+        }
+    });
 }
 
 exports.delete = (req, res) => {

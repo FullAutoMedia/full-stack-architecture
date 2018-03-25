@@ -6,6 +6,9 @@ exports.create = () => {
     db.serialize(() => {
         db.run("CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY, name TEXT, auditUser TEXT, auditTimestamp)");
 
+        //testing
+        // db.run("DELETE from items");
+
         // var stmt = db.prepare("INSERT INTO items(id, name, auditUser, auditTimestamp) VALUES (?, ?, ?, ?)");
         // for (var i = 0; i < 5; i++) {
         //     stmt.run(i, "Ipsum " + i, "audit" + i, new Date());
