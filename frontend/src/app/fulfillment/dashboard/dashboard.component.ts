@@ -13,7 +13,6 @@ export class DashboardComponent implements OnInit {
   constructor(private itemService: ItemService) { }
 
   ngOnInit() {
-    this.itemService.items.subscribe(items => this.itemCount = items.length);
+    this.itemService.get().subscribe(items => this.itemCount = items.length);
   }
-
 }

@@ -1,8 +1,7 @@
 <h2>{{ action }} Item</h2>
 
-
  <mat-form-field>
-    <input matInput placeholder="Name" [(value)]="item.name" />
+    <input matInput placeholder="Name" [(ngModel)]="item.name" />
   </mat-form-field>
 
 <div class="actions">

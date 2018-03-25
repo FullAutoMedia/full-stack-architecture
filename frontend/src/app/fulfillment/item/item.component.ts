@@ -33,10 +33,15 @@ export class ItemComponent implements OnInit {
   }
 
   saveItem() {
+    let save;
     if (this.mode == ItemComponentMode.Add) {
-      this.itemService.add(this.item);
+      save = this.itemService.add(this.item);
     } else {
-      this.itemService.update(this.item);
+      save = this.itemService.update(this.item);
     }
+
+    save.subscribe(res => {
+      this.dialogRef.close();
+    });
   }
 }

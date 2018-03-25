@@ -2,7 +2,14 @@ var sqlite3 = require('sqlite3');
 var itemService = require('./../services/item.service');
 
 exports.create = (req, res) => {
-    res.send('item create')
+    var item = req.body;
+    itemService.create(item, (err, item) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(item);
+        }
+    });
 }
 
 exports.list = (req, res) => {    

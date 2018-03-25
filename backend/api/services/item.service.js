@@ -1,7 +1,18 @@
 var sqlite3 = require('sqlite3');
 
-exports.create = (req, res) => {
-    res.send('item create')
+exports.create = (item, callback) => {
+    var db = new sqlite3.Database('./data-store/demo.db');
+    var sql = "INSERT INTO items(name, auditUser, auditTimestamp) VALUES ('" + item.name + "', 'aa', null)";
+
+    db.run(sql, function(err) {
+        if (err) {
+            callback(err, null);
+        } else {
+            callback(err, { id: this.lastID });
+        }        
+    });
+
+    db.close();
 }
 
 exports.list = (callback) => {   

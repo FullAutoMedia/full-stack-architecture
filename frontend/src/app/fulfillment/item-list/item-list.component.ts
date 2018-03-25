@@ -22,22 +22,30 @@ export class ItemListComponent implements OnInit {
   constructor(private itemService: ItemService, private dialog: MatDialog) { }
 
   ngOnInit() {
-    this.itemService.get().subscribe((items: Item[]) => this.dataSource.data = items);
+    this.getItems();
   }
 
   addItem() {
     let dialogRef = this.dialog.open(ItemComponent, {
       data: new ItemComponentDialogData(ItemComponentMode.Add)
     });
+
+    dialogRef.afterClosed().subscribe(() => this.getItems());
   }
 
   editItem(item: Item) {
     let dialogRef = this.dialog.open(ItemComponent, {
       data: new ItemComponentDialogData(ItemComponentMode.Update, item)
     });
+
+    dialogRef.afterClosed().subscribe(() => this.getItems());
   }
 
   deleteItem(item: Item) {
     this.itemService.delete(item);
+  }
+
+  private getItems() {
+    this.itemService.get().subscribe(items => this.dataSource.data = items);
   }
 }

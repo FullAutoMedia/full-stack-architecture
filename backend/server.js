@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
 var datastore = require('./data-store/data-store');
 
 datastore.create();
@@ -23,6 +24,8 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });
+
+app.use(bodyParser.json());
 
 //routing
 app.use('/api/v1/items', require('./api/routes/item.routes'));
