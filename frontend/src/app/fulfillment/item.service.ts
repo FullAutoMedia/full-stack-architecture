@@ -1,36 +1,19 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 import { Item } from './models/item';
 
 @Injectable()
 export class ItemService {
-  items: Observable<Item[]>;
+  constructor(private http: HttpClient) { }
 
-  private itemsSubject: BehaviorSubject<Item[]>;
-  private itemsCache: Item[];
-
-  constructor() { 
-    this.itemsSubject = new BehaviorSubject<Item[]>(null);
-    this.items = this.itemsSubject.filter(items => items !== null);
-
-    //testing
-
-    this.itemsCache = [
-      new Item({ id: 1, name: 'aaa'}),
-      new Item({id: 2, name: 'Helium'}),
-      new Item({id: 3, name: 'Lithium'}),
-      new Item({id: 4, name: 'Beryllium'}),
-      new Item({id: 5, name: 'Boron'}),
-      new Item({id: 6, name: 'Carbon'})
-    ];  
-
-    this.itemsSubject.next(this.itemsCache);
+  get() {
+    return this.http.get('http://localhost:3000/api/v1/items');
   }
 
   add(item: Item) {
     // this.items.push(item);
-    console.log(this.itemsSubject.value);
+    // console.log(this.itemsSubject.value);
   }
 
   update(item: Item) {

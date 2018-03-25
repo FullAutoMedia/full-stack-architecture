@@ -22,7 +22,7 @@ export class ItemListComponent implements OnInit {
   constructor(private itemService: ItemService, private dialog: MatDialog) { }
 
   ngOnInit() {
-    this.itemService.items.subscribe(items => this.dataSource.data = items);
+    this.itemService.get().subscribe((items: Item[]) => this.dataSource.data = items);
   }
 
   addItem() {
