@@ -45,5 +45,12 @@ exports.update = (req, res) => {
 }
 
 exports.delete = (req, res) => {
-    res.send('item delete ' + req.params.itemId)
+    var itemId = req.params.itemId;
+    itemService.delete(itemId, (err) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send();
+        }
+    });
 }

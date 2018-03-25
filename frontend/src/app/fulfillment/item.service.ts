@@ -18,10 +18,10 @@ export class ItemService {
   }
 
   update(item: Item) {
-    return this.http.put(this.api + '/' + item.id, item);
+    return this.http.put(this.api, item);
   }
 
-  delete(item: Item) {
+  delete(item: Item) { 
     return this.http.delete(this.api + '/' + item.id);
   }
 }

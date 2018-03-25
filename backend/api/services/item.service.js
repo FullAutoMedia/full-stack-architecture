@@ -30,7 +30,7 @@ exports.list = (callback) => {
 
 exports.update = (item, callback) => {
     var db = new sqlite3.Database('./data-store/demo.db');
-    var sql = "UPDATE items SET name ='" + item.name + "'";
+    var sql = "UPDATE items SET name ='" + item.name + "' where id=" + item.id;
 
     db.run(sql, function(err) {
         if (err) {
@@ -43,6 +43,13 @@ exports.update = (item, callback) => {
     db.close();
 }
 
-exports.delete = (req, res) => {
-    res.send('item delete ' + req.params.itemId)
+exports.delete = (itemId, callback) => {
+    var db = new sqlite3.Database('./data-store/demo.db');
+    var sql = "DELETE FROM items where id=" + itemId;
+
+    db.run(sql, function(err) {
+        callback(err);       
+    });
+
+    db.close();
 }

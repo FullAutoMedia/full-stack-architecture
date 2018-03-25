@@ -8,7 +8,7 @@ router
   //read - list
   .get('/', itemCtrl.list)
   //update
-  .put('/:itemId(\\d+)', itemCtrl.update)
+  .put('/', itemCtrl.update)
   //delete
   .delete('/:itemId(\\d+)', itemCtrl.delete);
 

@@ -41,8 +41,8 @@ export class ItemListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(() => this.getItems());
   }
 
-  deleteItem(item: Item) {
-    this.itemService.delete(item);
+  deleteItem(item: Item) {    
+    this.itemService.delete(item).subscribe(() => this.getItems());
   }
 
   private getItems() {
