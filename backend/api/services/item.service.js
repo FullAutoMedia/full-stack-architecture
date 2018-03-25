@@ -17,10 +17,6 @@ exports.list = (callback) => {
     db.close();
 }
 
-exports.get = (req, res) => {
-    res.send('read item ' + req.params.itemId)
-}
-
 exports.update = (req, res) => {
     res.send('item update ' + req.params.itemId)
 }

@@ -7,8 +7,6 @@ router
   .post('/', itemCtrl.create)
   //read - list
   .get('/', itemCtrl.list)
-  //read - individual
-  .get('/:itemId(\\d+)', itemCtrl.get)
   //update
   .put('/:itemId(\\d+)', itemCtrl.update)
   //delete
