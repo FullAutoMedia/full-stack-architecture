@@ -1,26 +1,17 @@
 var express = require('express')
 var router = express.Router()
+var itemCtrl = require('./../controllers/item.controller')
 
 router
   //create
-  .post('/', (req, res) => {
-    res.send('item create')
-  })
+  .post('/', itemCtrl.create)
   //read - list
-  .get('/', function (req, res) {
-    res.send('read all items')
-  })
+  .get('/', itemCtrl.list)
   //read - individual
-  .get('/:itemId(\\d+)', function (req, res) {
-    res.send('read item ' + req.params.itemId)
-  })
+  .get('/:itemId(\\d+)', itemCtrl.get)
   //update
-  .put('/:itemId(\\d+)', (req, res) => {
-    res.send('item update ' + req.params.itemId)
-  })
+  .put('/:itemId(\\d+)', itemCtrl.update)
   //delete
-  .delete('/:itemId(\\d+)', (req, res) => {
-    res.send('item delete ' + req.params.itemId)
-  });
+  .delete('/:itemId(\\d+)', itemCtrl.delete);
 
 module.exports = router
