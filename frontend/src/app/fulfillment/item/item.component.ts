@@ -16,6 +16,7 @@ export class ItemComponent implements OnInit {
   action: string;
   mode: ItemComponentMode;
   item: Item;
+  isItemValid: boolean = true;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: ItemComponentDialogData, public dialogRef: MatDialogRef<ItemComponent>, private itemService: ItemService) { 
     this.mode = data.mode;
@@ -28,7 +29,7 @@ export class ItemComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
+  ngOnInit() { 
     
   }
 
@@ -40,8 +41,14 @@ export class ItemComponent implements OnInit {
       save = this.itemService.update(this.item);
     }
 
-    save.subscribe(res => {
-      this.dialogRef.close();
-    });
+    save.subscribe(
+      res => {
+        this.dialogRef.close();
+      },
+      err => {
+        if (err.message == 'Item is not valid') {
+          this.isItemValid = false;
+        }
+      });
   }
 }
