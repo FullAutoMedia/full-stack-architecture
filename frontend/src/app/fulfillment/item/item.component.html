@@ -4,7 +4,7 @@
   <mat-form-field>
       <input matInput placeholder="Name" [(ngModel)]="item.name" />      
     </mat-form-field>
-    <h3 *ngIf="!isItemValid" class="error-message">The item name must be valid</h3>
+    <h3 *ngIf="!isItemValid" class="error-message">The item must be valid</h3>
   <div class="actions">
     <button mat-button mat-dialog-close>Cancel</button>
     <button mat-button color="primary" (click)="saveItem()">Save</button>

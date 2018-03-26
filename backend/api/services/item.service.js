@@ -1,18 +1,24 @@
 var sqlite3 = require('sqlite3');
 
 exports.create = (item, callback) => {
-    var db = new sqlite3.Database('./data-store/demo.db');
-    var sql = "INSERT INTO items(name, auditUser, auditTimestamp) VALUES ('" + item.name + "', 'aa', null)";
+    //validate item
+    if (!isItemValid(item)) {
+        callback('Item is not valid', null);
+    } else {
+        //create item
+        var db = new sqlite3.Database('./data-store/demo.db');
+        var sql = "INSERT INTO items(name, auditUser, auditTimestamp) VALUES ('" + item.name + "', 'aa', null)";
 
-    db.run(sql, function(err) {
-        if (err) {
-            callback(err, null);
-        } else {
-            callback(err, { id: this.lastID });
-        }        
-    });
+        db.run(sql, function(err) {
+            if (err) {
+                callback(err, null);
+            } else {
+                callback(err, { id: this.lastID });
+            }        
+        });
 
-    db.close();
+        db.close();
+    }
 }
 
 exports.list = (callback) => {   
@@ -29,18 +35,22 @@ exports.list = (callback) => {
 }
 
 exports.update = (item, callback) => {
-    var db = new sqlite3.Database('./data-store/demo.db');
-    var sql = "UPDATE items SET name ='" + item.name + "' where id=" + item.id;
+    if (!isItemValid(item)) {
+        callback('Item is not valid', null);
+    } else {
+        var db = new sqlite3.Database('./data-store/demo.db');
+        var sql = "UPDATE items SET name ='" + item.name + "' where id=" + item.id;
 
-    db.run(sql, function(err) {
-        if (err) {
-            callback(err, null);
-        } else {
-            callback(err, item);
-        }        
-    });
+        db.run(sql, function(err) {
+            if (err) {
+                callback(err, null);
+            } else {
+                callback(err, item);
+            }        
+        });
 
-    db.close();
+        db.close();
+    }
 }
 
 exports.delete = (itemId, callback) => {
@@ -53,3 +63,9 @@ exports.delete = (itemId, callback) => {
 
     db.close();
 }
+
+isItemValid = (item) => {
+    return item
+        && item.name
+        && item.name.length > 2;
+}; 

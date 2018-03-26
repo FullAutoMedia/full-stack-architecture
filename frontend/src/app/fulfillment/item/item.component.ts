@@ -46,9 +46,7 @@ export class ItemComponent implements OnInit {
         this.dialogRef.close();
       },
       err => {
-        if (err.message == 'Item is not valid') {
-          this.isItemValid = false;
-        }
+        this.isItemValid = false;
       });
   }
 }

@@ -62,7 +62,6 @@ export class ItemService {
 
   private validateItemName(item: Item): boolean {
     return item.name
-      && item.name.length > 3
-      && item.name != 'bob';
+      && item.name.length > 4;
   }
 }

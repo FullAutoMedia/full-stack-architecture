@@ -12,7 +12,7 @@ exports.create = (req, res) => {
     });
 }
 
-exports.list = (req, res) => {    
+exports.list = (req, res) => {
     itemService.list((err, items) => {
         if (err) {
             res.send(err);
